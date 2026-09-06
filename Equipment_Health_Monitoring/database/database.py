@@ -1,21 +1,39 @@
 """
 SQLite Database manager for schema creation, CRUD queries, and historical telemetry retrieval.
+Includes cloud-safe directory fallback handling.
 """
 import os
 import sqlite3
 import json
+import tempfile
 import pandas as pd
 from datetime import datetime
 from typing import List, Dict, Any, Optional
 
 from utils.config import get_data_filepath, load_equipment_config
 
-DEFAULT_DB_PATH = get_data_filepath("equipment_health.db")
+def resolve_db_path() -> str:
+    """Resolve writable database path for local or cloud deployment."""
+    primary_path = get_data_filepath("equipment_health.db")
+    dir_path = os.path.dirname(primary_path)
+    try:
+        os.makedirs(dir_path, exist_ok=True)
+        # Test file creation
+        test_file = os.path.join(dir_path, ".write_test")
+        with open(test_file, "w") as f:
+            f.write("test")
+        os.remove(test_file)
+        return primary_path
+    except Exception:
+        # Fallback to temp directory on restricted read-only cloud hosts
+        temp_dir = tempfile.gettempdir()
+        return os.path.join(temp_dir, "equipment_health.db")
+
+DEFAULT_DB_PATH = resolve_db_path()
 
 class DatabaseManager:
-    def __init__(self, db_path: str = DEFAULT_DB_PATH):
-        self.db_path = db_path
-        # Ensure data directory exists
+    def __init__(self, db_path: str = None):
+        self.db_path = db_path if db_path is not None else DEFAULT_DB_PATH
         os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         self.init_database()
 
@@ -29,7 +47,6 @@ class DatabaseManager:
         with self.get_connection() as conn:
             cursor = conn.cursor()
             
-            # Equipment table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS equipment (
                 id TEXT PRIMARY KEY,
@@ -43,7 +60,6 @@ class DatabaseManager:
             )
             """)
 
-            # Sensor Readings table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS sensor_readings (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -60,7 +76,6 @@ class DatabaseManager:
             )
             """)
 
-            # Fused Results table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS fused_results (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -74,7 +89,6 @@ class DatabaseManager:
             )
             """)
 
-            # Anomalies table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS anomalies (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -89,7 +103,6 @@ class DatabaseManager:
             )
             """)
 
-            # Alerts table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS alerts (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -103,7 +116,6 @@ class DatabaseManager:
             )
             """)
 
-            # Maintenance Recommendations table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS maintenance_recommendations (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -127,7 +139,6 @@ class DatabaseManager:
         with self.get_connection() as conn:
             cursor = conn.cursor()
             
-            # Seed equipment
             cursor.execute("SELECT COUNT(*) FROM equipment")
             if cursor.fetchone()[0] == 0:
                 eq_config = load_equipment_config()
@@ -138,7 +149,6 @@ class DatabaseManager:
                     """, (eq["id"], eq["name"], eq["type"], eq["location"], eq["installation_date"], eq["rated_power"], eq["manufacturer"], eq["status"]))
                 conn.commit()
 
-            # Seed sample sensor data if empty
             cursor.execute("SELECT COUNT(*) FROM sensor_readings")
             if cursor.fetchone()[0] == 0:
                 csv_path = get_data_filepath("sample_sensor_data.csv")
