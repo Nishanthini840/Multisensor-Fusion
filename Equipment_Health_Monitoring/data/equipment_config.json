@@ -1,0 +1,45 @@
+{
+  "equipments": [
+    {
+      "id": "EQ-IND-101",
+      "name": "M-101 Main Induction Motor",
+      "type": "Induction Motor",
+      "location": "Production Bay Alpha",
+      "installation_date": "2022-03-15",
+      "rated_power": "45 kW",
+      "manufacturer": "Siemens Industrial",
+      "status": "Active"
+    },
+    {
+      "id": "EQ-PUMP-202",
+      "name": "P-202 Centrifugal Water Pump",
+      "type": "Centrifugal Pump",
+      "location": "Cooling Utilities",
+      "installation_date": "2021-08-10",
+      "rated_power": "30 kW",
+      "manufacturer": "Grundfos",
+      "status": "Active"
+    },
+    {
+      "id": "EQ-COMP-303",
+      "name": "C-303 Rotary Screw Air Compressor",
+      "type": "Air Compressor",
+      "location": "Compressor House",
+      "installation_date": "2023-01-20",
+      "rated_power": "75 kW",
+      "manufacturer": "Atlas Copco",
+      "status": "Active"
+    },
+    {
+      "id": "EQ-SPINDLE-404",
+      "name": "S-404 High-Speed CNC Spindle",
+      "type": "CNC Spindle",
+      "location": "Precision Machining Shop",
+      "installation_date": "2023-06-05",
+      "rated_power": "18 kW",
+      "manufacturer": "DMG MORI",
+      "status": "Active"
+    }
+  ],
+  "active_equipment_id": "EQ-IND-101"
+}

@@ -1,0 +1,96 @@
+{
+  "sensors": {
+    "temperature": {
+      "name": "Temperature",
+      "unit": "°C",
+      "weight": 0.20,
+      "min_safe": 20.0,
+      "max_safe": 65.0,
+      "warning_high": 75.0,
+      "critical_high": 90.0,
+      "min_possible": 0.0,
+      "max_possible": 120.0,
+      "description": "Monitors bearing and stator operating temperature"
+    },
+    "vibration": {
+      "name": "Vibration",
+      "unit": "mm/s",
+      "weight": 0.25,
+      "min_safe": 0.0,
+      "max_safe": 4.5,
+      "warning_high": 7.5,
+      "critical_high": 12.0,
+      "min_possible": 0.0,
+      "max_possible": 25.0,
+      "description": "ISO 10816 root-mean-square overall vibration severity"
+    },
+    "pressure": {
+      "name": "Pressure",
+      "unit": "bar",
+      "weight": 0.15,
+      "min_safe": 2.5,
+      "max_safe": 5.5,
+      "warning_low": 2.0,
+      "warning_high": 6.5,
+      "critical_low": 1.2,
+      "critical_high": 8.0,
+      "min_possible": 0.0,
+      "max_possible": 15.0,
+      "description": "Hydraulic / pneumatic system operating pressure"
+    },
+    "humidity": {
+      "name": "Humidity",
+      "unit": "%",
+      "weight": 0.05,
+      "min_safe": 30.0,
+      "max_safe": 65.0,
+      "warning_low": 20.0,
+      "warning_high": 75.0,
+      "critical_low": 10.0,
+      "critical_high": 90.0,
+      "min_possible": 0.0,
+      "max_possible": 100.0,
+      "description": "Ambient relative humidity around electrical enclosure"
+    },
+    "current": {
+      "name": "Current",
+      "unit": "A",
+      "weight": 0.15,
+      "min_safe": 5.0,
+      "max_safe": 18.0,
+      "warning_high": 22.0,
+      "critical_high": 28.0,
+      "min_possible": 0.0,
+      "max_possible": 50.0,
+      "description": "Motor phase RMS load current"
+    },
+    "voltage": {
+      "name": "Voltage",
+      "unit": "V",
+      "weight": 0.10,
+      "min_safe": 380.0,
+      "max_safe": 420.0,
+      "warning_low": 360.0,
+      "warning_high": 435.0,
+      "critical_low": 340.0,
+      "critical_high": 460.0,
+      "min_possible": 0.0,
+      "max_possible": 500.0,
+      "description": "3-Phase line supply voltage"
+    },
+    "rpm": {
+      "name": "RPM / Speed",
+      "unit": "RPM",
+      "weight": 0.10,
+      "min_safe": 1400.0,
+      "max_safe": 1780.0,
+      "warning_low": 1250.0,
+      "warning_high": 1850.0,
+      "critical_low": 1000.0,
+      "critical_high": 2000.0,
+      "min_possible": 0.0,
+      "max_possible": 3000.0,
+      "description": "Shaft rotational speed"
+    }
+  }
+}

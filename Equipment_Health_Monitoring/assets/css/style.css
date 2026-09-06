@@ -1,0 +1,106 @@
+/* Industrial Equipment Health Monitoring - Simplicity-First Technical Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+
+html, body, .stApp {
+    background-color: #0B0E14 !important;
+    color: #C5D1DE !important;
+    font-family: 'Inter', -apple-system, sans-serif !important;
+}
+
+.main .block-container {
+    padding-top: 1rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
+    max-width: 1300px !important;
+}
+
+/* Hide Default Streamlit Chrome */
+#MainMenu, footer, header {
+    visibility: hidden !important;
+    height: 0px !important;
+}
+
+/* Minimal Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #101520 !important;
+    border-right: 1px solid #1C2436 !important;
+    width: 240px !important;
+}
+
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1rem !important;
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
+}
+
+/* Sidebar Radio Buttons */
+section[data-testid="stSidebar"] div[role="radiogroup"] label {
+    background-color: #151C2C !important;
+    border: 1px solid #1F2A40 !important;
+    border-radius: 4px !important;
+    padding: 8px 10px !important;
+    margin-bottom: 4px !important;
+    color: #8A99AD !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    transition: all 0.12s ease-in-out !important;
+}
+
+section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
+    background-color: #1B2438 !important;
+    color: #F1F5F9 !important;
+    border-color: #38BDF8 !important;
+}
+
+section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true"],
+section[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) {
+    background-color: #1E293B !important;
+    color: #38BDF8 !important;
+    border-left: 3px solid #38BDF8 !important;
+}
+
+/* Monospace Numbers */
+div[data-testid="stMetricValue"], .mono-num {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 700 !important;
+    color: #F8FAFC !important;
+}
+
+/* Action Buttons */
+.stButton > button {
+    background-color: #151C2C !important;
+    color: #C5D1DE !important;
+    border: 1px solid #222E46 !important;
+    border-radius: 4px !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    padding: 6px 12px !important;
+    transition: all 0.12s ease-in-out !important;
+}
+
+.stButton > button:hover {
+    background-color: #1E293B !important;
+    color: #38BDF8 !important;
+    border-color: #38BDF8 !important;
+}
+
+/* Clean Dataframes */
+div[data-testid="stDataFrame"] {
+    background-color: #101520 !important;
+    border: 1px solid #1C2436 !important;
+    border-radius: 4px !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0B0E14;
+}
+::-webkit-scrollbar-thumb {
+    background: #1C2436;
+    border-radius: 3px;
+}

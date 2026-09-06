@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Sensor Fusion Equipment Health Monitoring System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div>
+                <div class="app-title">MULTI-SENSOR FUSION FOR INTELLIGENT EQUIPMENT HEALTH MONITORING</div>
+                <div class="app-subtitle">Engineering Analysis Application | Simplicity-First Architecture</div>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono);">
+                ASSET: <span style="color: #38BDF8; font-weight: 700;">M-101 MAIN INDUCTION MOTOR</span>
+            </div>
+        </header>
+
+        <!-- 3-Section Direct Flow Layout -->
+        <div class="flow-layout">
+
+            <!-- SECTION 1: INPUT -->
+            <section class="section-panel">
+                <div class="section-header">
+                    <span>1. SENSOR INPUTS</span>
+                    <span class="step-num">INPUT</span>
+                </div>
+
+                <div class="input-row">
+                    <span class="input-label">Temperature</span>
+                    <div class="input-group">
+                        <input type="number" id="in_temperature" class="input-field" value="42.5" step="0.5">
+                        <span class="input-unit">°C</span>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <span class="input-label">Vibration</span>
+                    <div class="input-group">
+                        <input type="number" id="in_vibration" class="input-field" value="1.8" step="0.1">
+                        <span class="input-unit">mm/s</span>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <span class="input-label">Pressure</span>
+                    <div class="input-group">
+                        <input type="number" id="in_pressure" class="input-field" value="4.1" step="0.1">
+                        <span class="input-unit">bar</span>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <span class="input-label">Humidity</span>
+                    <div class="input-group">
+                        <input type="number" id="in_humidity" class="input-field" value="45.0" step="1.0">
+                        <span class="input-unit">%</span>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <span class="input-label">Current</span>
+                    <div class="input-group">
+                        <input type="number" id="in_current" class="input-field" value="12.4" step="0.2">
+                        <span class="input-unit">A</span>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <span class="input-label">Voltage</span>
+                    <div class="input-group">
+                        <input type="number" id="in_voltage" class="input-field" value="401.2" step="1.0">
+                        <span class="input-unit">V</span>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <span class="input-label">RPM / Speed</span>
+                    <div class="input-group">
+                        <input type="number" id="in_rpm" class="input-field" value="1480" step="10">
+                        <span class="input-unit">RPM</span>
+                    </div>
+                </div>
+
+                <!-- Primary Action Button -->
+                <button id="btnAnalyze" class="btn-analyze">ANALYZE EQUIPMENT</button>
+
+                <!-- Quick Presets -->
+                <div class="box-title" style="margin-top: 6px;">Quick Presets</div>
+                <div class="preset-bar">
+                    <button class="btn-preset" data-mode="normal">Load Normal</button>
+                    <button class="btn-preset" data-mode="warning">Load Warning</button>
+                    <button class="btn-preset" data-mode="critical">Load Critical</button>
+                </div>
+            </section>
+
+
+            <!-- SECTION 2: PROCESS -->
+            <section class="section-panel">
+                <div class="section-header">
+                    <span>2. MULTI-SENSOR FUSION & ANALYSIS</span>
+                    <span class="step-num">PROCESS</span>
+                </div>
+
+                <!-- Process Schematic Flow -->
+                <div class="schematic-box">
+                    <span class="schematic-step">Sensor Validation</span>
+                    <span class="schematic-arrow">➔</span>
+                    <span class="schematic-step">Risk Calculation</span>
+                    <span class="schematic-arrow">➔</span>
+                    <span class="schematic-step">Multi-Sensor Fusion</span>
+                    <span class="schematic-arrow">➔</span>
+                    <span class="schematic-step">Health Score</span>
+                    <span class="schematic-arrow">➔</span>
+                    <span class="schematic-step">Maintenance Analysis</span>
+                </div>
+
+                <!-- Calculated Fusion Breakdown Matrix Table -->
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Sensor Channel</th>
+                            <th>Value</th>
+                            <th>Risk (0-1)</th>
+                            <th>Weight</th>
+                            <th>Contribution</th>
+                        </tr>
+                    </thead>
+                    <tbody id="processTbody"></tbody>
+                </table>
+            </section>
+
+
+            <!-- SECTION 3: OUTPUT -->
+            <section class="section-panel">
+                <div class="section-header">
+                    <span>3. EQUIPMENT HEALTH OUTPUT</span>
+                    <span class="step-num">OUTPUT</span>
+                </div>
+
+                <!-- 1. Equipment Health Score -->
+                <div class="output-card">
+                    <div class="output-label">1. Equipment Health Score</div>
+                    <div class="score-hero" id="outScore">95.0 / 100</div>
+                </div>
+
+                <!-- 2. Equipment Status -->
+                <div class="output-card">
+                    <div class="output-label">2. Equipment Status</div>
+                    <div><span class="status-badge" id="outStatus">HEALTHY</span></div>
+                </div>
+
+                <!-- 3. Main Problem Detected -->
+                <div class="output-card">
+                    <div class="output-label">3. Main Problem Detected</div>
+                    <div class="output-desc" id="outProblem" style="font-weight: 600;">None (All sensor parameters operating within nominal bounds)</div>
+                </div>
+
+                <!-- 4. Affected Sensors -->
+                <div class="output-card">
+                    <div class="output-label">4. Affected Sensors</div>
+                    <div class="output-text" id="outAffected" style="font-size: 0.85rem;">None</div>
+                </div>
+
+                <!-- 5. Maintenance Recommendation -->
+                <div class="output-card" style="border-left: 4px solid #10B981;">
+                    <div class="output-label">5. Maintenance Recommendation</div>
+                    <div class="output-text" id="outRecommendation">No immediate maintenance required.</div>
+                    <div class="output-desc" id="outReason">All monitored sensor metrics operate at optimal peak performance levels.</div>
+                    <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 6px; display: flex; justify-content: space-between;">
+                        <span>Timeframe: <strong id="outTimeframe" style="color: var(--text-main);">Routine</strong></span>
+                        <span>Priority: <strong id="outPriority" style="color: #10B981;">LOW</strong></span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
